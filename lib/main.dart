@@ -87,7 +87,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    print("kkkkkkkkkkkkkkk ${FlutterConfig.get('FACEBOOK_APP_ID')}");
     return const ScreenUtilInit(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
