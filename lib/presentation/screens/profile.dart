@@ -25,6 +25,7 @@ class Profile extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
                 padding: const EdgeInsets.only(top: 70),
+                height: MediaQuery.of(context).size.height,
                 alignment: Alignment.center,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
