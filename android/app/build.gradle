@@ -2,8 +2,13 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
+
+//    id 'com.github.cdimascio.dotenv'
+//    id project(':flutter-config').projectDir.getPath() + "/dotenv.gradle"
 //    id "${settings.ext.flutterSdkPath}/packages/flutter_tools/gradle/app_plugin_loader.gradle"
 }
+
+apply from: project(':flutter_config').projectDir.getPath() + "/dotenv.gradle"
 
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
@@ -51,6 +56,7 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
+
     }
 
     buildTypes {
@@ -58,6 +64,27 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
+            resValue "string", "FACEBOOK_APP_ID", project.env.get('FACEBOOK_APP_ID')
+            resValue "string", "FACEBOOK_CLIENT_TOKEN", project.env.get('FACEBOOK_CLIENT_TOKEN')
+            resValue "string", "FB_LOGIN_PROTOCOL_SCHEME", project.env.get('FB_LOGIN_PROTOCOL_SCHEME')
+//            manifestPlaceholders = [
+////                applicationId "com.example.movies",
+//facebook_app_id: project.env.get('FACEBOOK_APP_ID'),
+//facebook_client_token: project.env.get('FACEBOOK_CLIENT_TOKEN'),
+//fb_login_protocol_scheme: project.env.get('FB_LOGIN_PROTOCOL_SCHEME'),
+//            ]
+        }
+
+        debug{
+            resValue "string", "FACEBOOK_APP_ID", project.env.get('FACEBOOK_APP_ID')
+            resValue "string", "FACEBOOK_CLIENT_TOKEN", project.env.get('FACEBOOK_CLIENT_TOKEN')
+            resValue "string", "FB_LOGIN_PROTOCOL_SCHEME", project.env.get('FB_LOGIN_PROTOCOL_SCHEME')
+//            debugmanifestPlaceholders = [
+////                applicationId "com.example.movies",
+//'facebook_app_id': project.env.get('FACEBOOK_APP_ID'),
+//'facebook_client_token': project.env.get('FACEBOOK_CLIENT_TOKEN'),
+//'fb_login_protocol_scheme': project.env.get('FB_LOGIN_PROTOCOL_SCHEME'),
+//            ]
         }
     }
 }
@@ -70,4 +97,8 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'com.google.android.gms:play-services-auth:19.2.0'
     implementation 'com.facebook.android:facebook-login:latest.release'
+//    implementation 'com.github.cdimascio:java-dotenv:5.3.1'
 }
+//dotenv {
+//    filename '.env'
+//}

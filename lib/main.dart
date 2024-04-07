@@ -1,6 +1,8 @@
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_config/flutter_config.dart';
 import 'package:movies/data/remote/movies_api_service.dart';
 import 'package:movies/data/repo/genre_movies_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,12 +24,12 @@ import 'data/repo/cast_data.dart';
 import 'data/repo/movie_search_data.dart';
 import 'firebase_options.dart';
 
-
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await FlutterConfig.loadEnvVariables();
   // await EmailVerificationCubit().checkAndDeleteUserOnStart();
   runApp( MultiBlocProvider(
     providers: [
@@ -78,12 +80,14 @@ void main() async{
   ));
 }
 
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    print("kkkkkkkkkkkkkkk ${FlutterConfig.get('FACEBOOK_APP_ID')}");
     return const ScreenUtilInit(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

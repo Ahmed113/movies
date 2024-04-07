@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Aflamak</string>
-    <string name="facebook_app_id">395973719899689</string>
-    <string name="fb_login_protocol_scheme">fb395973719899689</string>
-    <string name="facebook_client_token">05589be6faf9ed329fc1eca3a0826cb5</string>
-
-
 </resources>
